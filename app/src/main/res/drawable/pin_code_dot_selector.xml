@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Active -->
+    <item
+        android:drawable="@drawable/pin_code_dot_in_active"
+        android:state_enabled="true"
+        android:state_pressed="false"
+        android:state_selected="false" />
+    <!-- In Active -->
+    <item
+        android:drawable="@drawable/pin_code_dot_active"
+        android:state_enabled="false"
+        android:state_pressed="false"/>
+</selector>

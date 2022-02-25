@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Passet</string>
+    <string name="pin_code_enter">Введите пин-код</string>
+    <string name="pin_code_create">Создайте пин-код</string>
+    <string name="pin_code_repeat">Повторите пин-код</string>
+</resources>

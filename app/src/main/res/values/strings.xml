@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Passet</string>
+    <string name="pin_code_enter">Enter the pin code</string>
+    <string name="pin_code_create">Create a pin code</string>
+    <string name="pin_code_repeat">Repeat the pin code</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+</resources>
