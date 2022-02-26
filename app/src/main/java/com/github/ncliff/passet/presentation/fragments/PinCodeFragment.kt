@@ -37,24 +37,21 @@ class PinCodeFragment : Fragment(R.layout.fragment_pin_code) {
         textSelector()
         dotSelectorAndClickListener()
 
-        // TODO: PinCode Toast удалить или изменить
-        pinCodeViewModel.securedPinCode.observe(viewLifecycleOwner) { securedPinCode ->
-            Toast.makeText(context, "${pinCodeViewModel.equalPinCode.value == true}", Toast.LENGTH_SHORT).show()
+        pinCodeViewModel.equalPinCode.observe(viewLifecycleOwner) { _booleanPinCode ->
+            when (_booleanPinCode) {
+                true -> Toast.makeText(context, "true", Toast.LENGTH_SHORT).show()
+                false -> Toast.makeText(context, "false", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     private fun textSelector() {
-        if (sharedPreferences.getString(PinCodeViewModel.PIN_CODE_KEY, "").isNullOrEmpty()) {
-            binding.pinCodeText.text = getString(R.string.pin_code_create)
-        } else {
-            binding.pinCodeText.text = getString(R.string.pin_code_enter)
-        }
-
-        pinCodeViewModel.repeatPinCode.observe(viewLifecycleOwner) { repeat ->
-            if (repeat.isNullOrEmpty()) {
-                binding.pinCodeText.text = getString(R.string.pin_code_create)
-            } else {
-                binding.pinCodeText.text = getString(R.string.pin_code_repeat)
+        pinCodeViewModel.pinCodeState.observe(viewLifecycleOwner) { state ->
+            binding.pinCodeText.text = when (state) {
+                PinCodeViewModel.Companion.PinCodeState.PIN_CODE_ENTER -> getString(R.string.pin_code_enter)
+                PinCodeViewModel.Companion.PinCodeState.PIN_CODE_CREATE -> getString(R.string.pin_code_create)
+                PinCodeViewModel.Companion.PinCodeState.PIN_CODE_REPEAT -> getString(R.string.pin_code_repeat)
+                null -> "null"
             }
         }
     }
