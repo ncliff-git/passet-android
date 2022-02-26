@@ -2,6 +2,7 @@ package com.github.ncliff.passet.presentation.fragments
 
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,10 +38,14 @@ class PinCodeFragment : Fragment(R.layout.fragment_pin_code) {
         textSelector()
         dotSelectorAndClickListener()
 
-        pinCodeViewModel.equalPinCode.observe(viewLifecycleOwner) { _booleanPinCode ->
+        pinCodeViewModel.pinCodeEqual.observe(viewLifecycleOwner) { _booleanPinCode ->
             when (_booleanPinCode) {
                 true -> Toast.makeText(context, "true", Toast.LENGTH_SHORT).show()
-                false -> Toast.makeText(context, "false", Toast.LENGTH_SHORT).show()
+                false -> {
+                    val toast = Toast.makeText(context, R.string.pin_code_error, Toast.LENGTH_SHORT)
+                    toast.setGravity(Gravity.CENTER, 0, 0)
+                    toast.show()
+                }
             }
         }
     }

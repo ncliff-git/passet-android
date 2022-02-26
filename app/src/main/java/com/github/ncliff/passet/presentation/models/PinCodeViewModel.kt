@@ -4,23 +4,18 @@ import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.github.ncliff.passet.R
 
 class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewModel() {
-    private val _securedPinCode = MutableLiveData<String>()
     private val _pinCode = MutableLiveData<String>()
     val pinCode: LiveData<String> = _pinCode
 
-    private val _equalPinCode = MutableLiveData<Boolean>()
-    val equalPinCode: LiveData<Boolean> = _equalPinCode
+    private val _pinCodeEqual = MutableLiveData<Boolean>()
+    val pinCodeEqual: LiveData<Boolean> = _pinCodeEqual
 
-    private val _repeatPinCode = MutableLiveData<String>()
-    val repeatPinCode: LiveData<String> = _repeatPinCode
+    private val _pinCodeState = MutableLiveData<PinCodeState>()
+    val pinCodeState: LiveData<PinCodeState> = _pinCodeState
 
-    // start: Test
-    val pinCodeState = MutableLiveData<PinCodeState>()
-
-    // end
+    private var repeatPinCode: String = ""
 
     init {
         val state = if (sharedPreferences.getString(PIN_CODE_KEY, "").isNullOrEmpty()) {
@@ -28,7 +23,7 @@ class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewM
         } else {
             PinCodeState.PIN_CODE_ENTER
         }
-        pinCodeState.postValue(state)
+        _pinCodeState.postValue(state)
     }
 
     fun onNumberClicked(num: Char) {
@@ -38,16 +33,16 @@ class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewM
 
         if (newPassCode.length >= 6) {
             if (sharedPreferences.getString(PIN_CODE_KEY, "").isNullOrEmpty()) {
-                pinCodeState.postValue(PinCodeState.PIN_CODE_CREATE)
-                if (repeatPinCode.value.isNullOrEmpty()) {
-                    pinCodeState.postValue(PinCodeState.PIN_CODE_REPEAT)
-                    _repeatPinCode.postValue(newPassCode)
+                _pinCodeState.postValue(PinCodeState.PIN_CODE_CREATE)
+                if (repeatPinCode.isEmpty()) {
+                    _pinCodeState.postValue(PinCodeState.PIN_CODE_REPEAT)
+                    repeatPinCode = newPassCode
                     _pinCode.postValue("")
                     return
                 }
-                if (repeatPinCode.value != newPassCode) {
-                    _equalPinCode.postValue(false)
-                    _repeatPinCode.postValue("")
+                if (repeatPinCode != newPassCode) {
+                    _pinCodeEqual.postValue(false)
+                    repeatPinCode = ""
                     _pinCode.postValue("")
                     return
                 }
@@ -56,10 +51,9 @@ class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewM
                     apply()
                 }
             }
-            pinCodeState.postValue(PinCodeState.PIN_CODE_ENTER)
+            _pinCodeState.postValue(PinCodeState.PIN_CODE_ENTER)
             val pinCodeInSharedPreference = sharedPreferences.getString(PIN_CODE_KEY, "")
-            _equalPinCode.postValue(newPassCode == pinCodeInSharedPreference)
-            _securedPinCode.postValue(pinCodeInSharedPreference ?: "")
+            _pinCodeEqual.postValue(newPassCode == pinCodeInSharedPreference)
             _pinCode.postValue("")
         }
     }
