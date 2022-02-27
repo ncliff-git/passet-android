@@ -1,6 +1,7 @@
 package com.github.ncliff.passet.presentation.fragments
 
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import com.github.ncliff.passet.data.EncryptSharedPreferences
 import com.github.ncliff.passet.databinding.FragmentPinCodeBinding
 import com.github.ncliff.passet.presentation.models.PinCodeViewModel
 import com.github.ncliff.passet.presentation.models.PinCodeViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 
 class PinCodeFragment : Fragment(R.layout.fragment_pin_code) {
     private var  _binding: FragmentPinCodeBinding? = null
@@ -40,11 +42,15 @@ class PinCodeFragment : Fragment(R.layout.fragment_pin_code) {
 
         pinCodeViewModel.pinCodeEqual.observe(viewLifecycleOwner) { _booleanPinCode ->
             when (_booleanPinCode) {
-                true -> Toast.makeText(context, "true", Toast.LENGTH_SHORT).show()
+                true -> {
+                    // TODO: Убрать Toast
+                    Toast.makeText(context, "true", Toast.LENGTH_SHORT).show()
+                    // TODO: Сделать переход на основной фрагмент
+                }
                 false -> {
-                    val toast = Toast.makeText(context, R.string.pin_code_error, Toast.LENGTH_SHORT)
-                    toast.setGravity(Gravity.CENTER, 0, 0)
-                    toast.show()
+                    Snackbar.make(binding.root, R.string.pin_code_error, Snackbar.LENGTH_SHORT)
+                        .setBackgroundTint(Color.RED)
+                        .show()
                 }
             }
         }
@@ -64,7 +70,7 @@ class PinCodeFragment : Fragment(R.layout.fragment_pin_code) {
     private fun dotSelectorAndClickListener() {
         pinCodeViewModel.pinCode.observe(viewLifecycleOwner) { pinCode ->
             binding.apply {
-                dot1.isEnabled = pinCode.length < 1
+                dot1.isEnabled = pinCode.isEmpty()
                 dot2.isEnabled = pinCode.length < 2
                 dot3.isEnabled = pinCode.length < 3
                 dot4.isEnabled = pinCode.length < 4

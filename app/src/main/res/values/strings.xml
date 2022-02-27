@@ -4,6 +4,5 @@
     <string name="pin_code_create">Create a pin code</string>
     <string name="pin_code_repeat">Repeat the pin code</string>
     <string name="pin_code_error">Wrong pin code</string>
-    <!-- TODO: Remove or change this placeholder text -->
 
 </resources>
