@@ -37,26 +37,21 @@ class PinCodeFragment : Fragment(R.layout.fragment_pin_code) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        textSelector()
-        dotSelectorAndClickListener()
+        observersAndClickListener()
 
         pinCodeViewModel.pinCodeEqual.observe(viewLifecycleOwner) { _booleanPinCode ->
             when (_booleanPinCode) {
-                true -> {
-                    // TODO: Убрать Toast
-                    Toast.makeText(context, "true", Toast.LENGTH_SHORT).show()
-                    // TODO: Сделать переход на основной фрагмент
-                }
-                false -> {
-                    Snackbar.make(binding.root, R.string.pin_code_error, Snackbar.LENGTH_SHORT)
+                // TODO: Убрать Toast
+                // TODO: Сделать переход на основной фрагмент
+                true -> Toast.makeText(context, "true", Toast.LENGTH_SHORT).show()
+                false -> Snackbar.make(binding.root, R.string.pin_code_error, Snackbar.LENGTH_SHORT)
                         .setBackgroundTint(Color.RED)
                         .show()
-                }
             }
         }
     }
 
-    private fun textSelector() {
+    private fun observersAndClickListener() {
         pinCodeViewModel.pinCodeState.observe(viewLifecycleOwner) { state ->
             binding.pinCodeText.text = when (state) {
                 PinCodeViewModel.Companion.PinCodeState.PIN_CODE_ENTER -> getString(R.string.pin_code_enter)
@@ -65,9 +60,7 @@ class PinCodeFragment : Fragment(R.layout.fragment_pin_code) {
                 null -> "null"
             }
         }
-    }
 
-    private fun dotSelectorAndClickListener() {
         pinCodeViewModel.pinCode.observe(viewLifecycleOwner) { pinCode ->
             binding.apply {
                 dot1.isEnabled = pinCode.isEmpty()

@@ -4,10 +4,10 @@
     android:shape="oval">
     <stroke
         android:width="@dimen/stroke_width"
-        android:color="@color/black"/>
+        android:color="@color/black" />
     <gradient
         android:type="radial"
         android:gradientRadius="50dp"
         android:endColor="@android:color/darker_gray"
-        android:startColor="@color/white"/>
+        android:startColor="@color/white" />
 </shape>

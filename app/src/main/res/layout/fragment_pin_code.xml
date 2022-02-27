@@ -72,10 +72,10 @@
         android:id="@+id/numpad_linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="4"
-        app:layout_constraintTop_toBottomOf="@id/pin_code_dots_linearLayout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -222,10 +222,10 @@
                 android:id="@+id/backspace"
                 android:layout_width="@dimen/numpad_button_size"
                 android:layout_height="@dimen/numpad_button_size"
-                android:padding="20dp"
                 android:background="?attr/actionBarItemBackground"
                 android:clickable="true"
                 android:focusable="true"
+                android:padding="20dp"
                 app:srcCompat="@drawable/ic_backspace"
                 app:tint="@color/black" />
 
