@@ -10,56 +10,63 @@
         android:id="@+id/pin_code_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:layout_weight="1"
         android:fontFamily="@font/montserrat_alternates"
         android:text="@string/pin_code_enter"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/pin_code_dots_linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <LinearLayout
         android:id="@+id/pin_code_dots_linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/numpad_linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pin_code_text"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toBottomOf="@+id/pin_code_text">
 
         <View
             android:id="@+id/dot_1"
             android:layout_width="@dimen/pin_code_dot_size"
             android:layout_height="@dimen/pin_code_dot_size"
-            android:background="@drawable/pin_code_dot_selector"/>
+            android:background="@drawable/pin_code_dot_selector" />
+
         <View
             android:id="@+id/dot_2"
             android:layout_width="@dimen/pin_code_dot_size"
             android:layout_height="@dimen/pin_code_dot_size"
             android:layout_marginStart="@dimen/pin_code_dot_margin"
-            android:background="@drawable/pin_code_dot_selector"/>
+            android:background="@drawable/pin_code_dot_selector" />
+
         <View
             android:id="@+id/dot_3"
             android:layout_width="@dimen/pin_code_dot_size"
             android:layout_height="@dimen/pin_code_dot_size"
             android:layout_marginStart="@dimen/pin_code_dot_margin"
-            android:background="@drawable/pin_code_dot_selector"/>
+            android:background="@drawable/pin_code_dot_selector" />
+
         <View
             android:id="@+id/dot_4"
             android:layout_width="@dimen/pin_code_dot_size"
             android:layout_height="@dimen/pin_code_dot_size"
             android:layout_marginStart="@dimen/pin_code_dot_margin"
             android:background="@drawable/pin_code_dot_selector" />
+
         <View
             android:id="@+id/dot_5"
             android:layout_width="@dimen/pin_code_dot_size"
             android:layout_height="@dimen/pin_code_dot_size"
             android:layout_marginStart="@dimen/pin_code_dot_margin"
             android:background="@drawable/pin_code_dot_selector" />
+
         <View
             android:id="@+id/dot_6"
             android:layout_width="@dimen/pin_code_dot_size"
@@ -72,7 +79,7 @@
         android:id="@+id/numpad_linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:gravity="center"
         android:orientation="vertical"
         android:weightSum="4"
@@ -93,7 +100,6 @@
                 style="@style/numpad_button"
                 android:layout_width="@dimen/numpad_button_size"
                 android:layout_height="@dimen/numpad_button_size"
-                android:layout_weight="1"
                 android:text="1"
                 app:backgroundTint="@null" />
 
@@ -103,7 +109,6 @@
                 android:layout_width="@dimen/numpad_button_size"
                 android:layout_height="@dimen/numpad_button_size"
                 android:layout_marginHorizontal="@dimen/numpad_margin"
-                android:layout_weight="1"
                 android:text="2"
                 app:backgroundTint="@null" />
 
@@ -112,7 +117,6 @@
                 style="@style/numpad_button"
                 android:layout_width="@dimen/numpad_button_size"
                 android:layout_height="@dimen/numpad_button_size"
-                android:layout_weight="1"
                 android:text="3"
                 app:backgroundTint="@null" />
         </LinearLayout>
@@ -131,7 +135,6 @@
                 style="@style/numpad_button"
                 android:layout_width="@dimen/numpad_button_size"
                 android:layout_height="@dimen/numpad_button_size"
-                android:layout_weight="1"
                 android:text="4"
                 app:backgroundTint="@null" />
 
@@ -141,7 +144,6 @@
                 android:layout_width="@dimen/numpad_button_size"
                 android:layout_height="@dimen/numpad_button_size"
                 android:layout_marginHorizontal="@dimen/numpad_margin"
-                android:layout_weight="1"
                 android:text="5"
                 app:backgroundTint="@null" />
 
@@ -150,7 +152,6 @@
                 style="@style/numpad_button"
                 android:layout_width="@dimen/numpad_button_size"
                 android:layout_height="@dimen/numpad_button_size"
-                android:layout_weight="1"
                 android:text="6"
                 app:backgroundTint="@null" />
         </LinearLayout>
@@ -169,7 +170,6 @@
                 style="@style/numpad_button"
                 android:layout_width="@dimen/numpad_button_size"
                 android:layout_height="@dimen/numpad_button_size"
-                android:layout_weight="1"
                 android:text="7"
                 app:backgroundTint="@null" />
 
@@ -179,7 +179,6 @@
                 android:layout_width="@dimen/numpad_button_size"
                 android:layout_height="@dimen/numpad_button_size"
                 android:layout_marginHorizontal="@dimen/numpad_margin"
-                android:layout_weight="1"
                 android:text="8"
                 app:backgroundTint="@null" />
 
@@ -188,7 +187,6 @@
                 style="@style/numpad_button"
                 android:layout_width="@dimen/numpad_button_size"
                 android:layout_height="@dimen/numpad_button_size"
-                android:layout_weight="1"
                 android:text="9"
                 app:backgroundTint="@null" />
 

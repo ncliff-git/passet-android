@@ -1,17 +1,19 @@
 package com.github.ncliff.passet.presentation.fragments
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.github.ncliff.passet.R
-import com.github.ncliff.passet.data.EncryptSharedPreferences
+import com.github.ncliff.passet.data.DataUtils
 import com.github.ncliff.passet.databinding.FragmentPinCodeBinding
 import com.github.ncliff.passet.presentation.models.PinCodeViewModel
 import com.github.ncliff.passet.presentation.models.PinCodeViewModelFactory
@@ -29,7 +31,7 @@ class PinCodeFragment : Fragment(R.layout.fragment_pin_code) {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPinCodeBinding.inflate(inflater, container, false)
-        sharedPreferences = EncryptSharedPreferences.getInstance(requireContext()).sharedPreferences
+        sharedPreferences = requireActivity().getSharedPreferences(DataUtils.APP_PREFERENCES, Context.MODE_PRIVATE)
         pinCodeViewModel = ViewModelProvider(this, PinCodeViewModelFactory(sharedPreferences))
             .get(PinCodeViewModel::class.java)
         return _binding?.root
@@ -41,12 +43,14 @@ class PinCodeFragment : Fragment(R.layout.fragment_pin_code) {
 
         pinCodeViewModel.pinCodeEqual.observe(viewLifecycleOwner) { _booleanPinCode ->
             when (_booleanPinCode) {
-                // TODO: Убрать Toast
-                // TODO: Сделать переход на основной фрагмент
-                true -> Toast.makeText(context, "true", Toast.LENGTH_SHORT).show()
-                false -> Snackbar.make(binding.root, R.string.pin_code_error, Snackbar.LENGTH_SHORT)
+                true -> {
+                    findNavController().navigate(R.id.action_pinCodeFragment_to_accountListFragment)
+                }
+                false -> {
+                    Snackbar.make(binding.root, R.string.pin_code_error, Snackbar.LENGTH_SHORT)
                         .setBackgroundTint(Color.RED)
                         .show()
+                }
             }
         }
     }

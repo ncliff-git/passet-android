@@ -5,4 +5,8 @@
     <string name="pin_code_create">Создайте пин-код</string>
     <string name="pin_code_repeat">Повторите пин-код</string>
     <string name="pin_code_error">Неверный пин-код</string>
+    <string name="empty_list">Создайте пароль</string>
+
+    <string name="content_description_passet_icon">значок приложения</string>
+    <string name="content_description_add_button">кнопка добавления</string>
 </resources>

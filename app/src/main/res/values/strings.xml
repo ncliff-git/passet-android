@@ -4,5 +4,8 @@
     <string name="pin_code_create">Create a pin code</string>
     <string name="pin_code_repeat">Repeat the pin code</string>
     <string name="pin_code_error">Wrong pin code</string>
+    <string name="empty_list">Create a password</string>
 
+    <string name="content_description_passet_icon">app icon</string>
+    <string name="content_description_add_button">add button</string>
 </resources>

@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.github.ncliff.passet.data.DataUtils
 
 class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewModel() {
     private val _pinCode = MutableLiveData<String>()
@@ -18,7 +19,7 @@ class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewM
     private var repeatPinCode: String = ""
 
     init {
-        val state = if (sharedPreferences.getString(PIN_CODE_KEY, "").isNullOrEmpty()) {
+        val state = if (sharedPreferences.getString(DataUtils.PIN_CODE_KEY, "").isNullOrEmpty()) {
             PinCodeState.PIN_CODE_CREATE
         } else {
             PinCodeState.PIN_CODE_ENTER
@@ -32,7 +33,7 @@ class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewM
         _pinCode.postValue(newPassCode)
 
         if (newPassCode.length >= 6) {
-            if (sharedPreferences.getString(PIN_CODE_KEY, "").isNullOrEmpty()) {
+            if (sharedPreferences.getString(DataUtils.PIN_CODE_KEY, "").isNullOrEmpty()) {
                 _pinCodeState.postValue(PinCodeState.PIN_CODE_CREATE)
                 if (repeatPinCode.isEmpty()) {
                     _pinCodeState.postValue(PinCodeState.PIN_CODE_REPEAT)
@@ -47,12 +48,12 @@ class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewM
                     return
                 }
                 sharedPreferences.edit().run {
-                    putString(PIN_CODE_KEY, newPassCode)
+                    putString(DataUtils.PIN_CODE_KEY, newPassCode)
                     apply()
                 }
             }
             _pinCodeState.postValue(PinCodeState.PIN_CODE_ENTER)
-            val pinCodeInSharedPreference = sharedPreferences.getString(PIN_CODE_KEY, "")
+            val pinCodeInSharedPreference = sharedPreferences.getString(DataUtils.PIN_CODE_KEY, "")
             _pinCodeEqual.postValue(newPassCode == pinCodeInSharedPreference)
             _pinCode.postValue("")
         }
@@ -64,8 +65,6 @@ class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewM
     }
 
     companion object {
-        const val PIN_CODE_KEY = "PIN_CODE_KEY"
-
         enum class PinCodeState {
             PIN_CODE_ENTER,
             PIN_CODE_CREATE,

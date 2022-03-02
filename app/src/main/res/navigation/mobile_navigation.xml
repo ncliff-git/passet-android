@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/pinCodeFragment">
+
+    <fragment
+        android:id="@+id/pinCodeFragment"
+        android:name="com.github.ncliff.passet.presentation.fragments.PinCodeFragment"
+        android:label="fragment_pin_code"
+        tools:layout="@layout/fragment_pin_code" >
+        <action
+            android:id="@+id/action_pinCodeFragment_to_accountListFragment"
+            app:destination="@id/accountListFragment"
+            app:enterAnim="@anim/to_left"
+            app:exitAnim="@anim/from_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountListFragment"
+        android:name="com.github.ncliff.passet.presentation.fragments.AccountListFragment"
+        android:label="fragment_account_list"
+        tools:layout="@layout/fragment_account_list" />
+</navigation>
