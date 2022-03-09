@@ -10,8 +10,8 @@ class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewM
     private val _pinCode = MutableLiveData<String>()
     val pinCode: LiveData<String> = _pinCode
 
-    private val _pinCodeEqual = MutableLiveData<Boolean>()
-    val pinCodeEqual: LiveData<Boolean> = _pinCodeEqual
+    private val _pinCodeAccess = MutableLiveData<Boolean>()
+    val pinCodeAccess: LiveData<Boolean> = _pinCodeAccess
 
     private val _pinCodeState = MutableLiveData<PinCodeState>()
     val pinCodeState: LiveData<PinCodeState> = _pinCodeState
@@ -34,7 +34,6 @@ class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewM
 
         if (newPassCode.length >= 6) {
             if (sharedPreferences.getString(DataUtils.PIN_CODE_KEY, "").isNullOrEmpty()) {
-                _pinCodeState.postValue(PinCodeState.PIN_CODE_CREATE)
                 if (repeatPinCode.isEmpty()) {
                     _pinCodeState.postValue(PinCodeState.PIN_CODE_REPEAT)
                     repeatPinCode = newPassCode
@@ -42,7 +41,8 @@ class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewM
                     return
                 }
                 if (repeatPinCode != newPassCode) {
-                    _pinCodeEqual.postValue(false)
+                    _pinCodeState.postValue(PinCodeState.PIN_CODE_CREATE)
+                    _pinCodeAccess.postValue(false)
                     repeatPinCode = ""
                     _pinCode.postValue("")
                     return
@@ -54,7 +54,7 @@ class PinCodeViewModel(private val sharedPreferences: SharedPreferences) : ViewM
             }
             _pinCodeState.postValue(PinCodeState.PIN_CODE_ENTER)
             val pinCodeInSharedPreference = sharedPreferences.getString(DataUtils.PIN_CODE_KEY, "")
-            _pinCodeEqual.postValue(newPassCode == pinCodeInSharedPreference)
+            _pinCodeAccess.postValue(newPassCode == pinCodeInSharedPreference)
             _pinCode.postValue("")
         }
     }

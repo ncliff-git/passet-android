@@ -8,9 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.github.ncliff.passet.R
 import com.github.ncliff.passet.data.DataUtils
@@ -40,8 +38,11 @@ class PinCodeFragment : Fragment(R.layout.fragment_pin_code) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observersAndClickListener()
+        moveTo()
+    }
 
-        pinCodeViewModel.pinCodeEqual.observe(viewLifecycleOwner) { _booleanPinCode ->
+    private fun moveTo() {
+        pinCodeViewModel.pinCodeAccess.observe(viewLifecycleOwner) { _booleanPinCode ->
             when (_booleanPinCode) {
                 true -> {
                     findNavController().navigate(R.id.action_pinCodeFragment_to_accountListFragment)
@@ -91,7 +92,8 @@ class PinCodeFragment : Fragment(R.layout.fragment_pin_code) {
         }
     }
 
-    companion object {
-        fun newInstance() = PinCodeFragment()
+    override fun onDestroy() {
+        _binding = null
+        super.onDestroy()
     }
 }

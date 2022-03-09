@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="stroke_width">4dp</dimen>
+    <dimen name="stroke_width">3dp</dimen>
     <dimen name="numpad_margin">10dp</dimen>
     <dimen name="numpad_button_size">70dp</dimen>
     <dimen name="pin_code_dot_size">16dp</dimen>

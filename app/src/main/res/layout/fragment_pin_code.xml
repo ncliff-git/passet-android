@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
-        android:fontFamily="@font/montserrat_alternates"
+        android:fontFamily="@font/roboto_light"
         android:text="@string/pin_code_enter"
         android:textAlignment="center"
         android:textColor="@color/black"
