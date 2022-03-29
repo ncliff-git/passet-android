@@ -16,4 +16,13 @@
     <string name="color_yellow">Yellow</string>
     <string name="color_gray">Gray</string>
     <string name="color_blue">Blue</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_login">Login</string>
+    <string name="hint_password">Password</string>
+    <string name="check_box_numbers">Numbers</string>
+    <string name="check_box_lowercase">LowerCase</string>
+    <string name="check_box_uppercase">UpperCase</string>
+    <string name="check_box_special_symbols">Special symbols</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

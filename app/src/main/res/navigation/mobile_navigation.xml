@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/pinCodeFragment"
         android:name="com.github.ncliff.passet.presentation.fragments.PinCodeFragment"
-        android:label="fragment_pin_code"
-        tools:layout="@layout/fragment_pin_code" >
+        android:label="Passet"
+        tools:layout="@layout/fragment_pin_code">
         <action
             android:id="@+id/action_pinCodeFragment_to_accountListFragment"
             app:destination="@id/accountListFragment"
@@ -19,8 +19,8 @@
     <fragment
         android:id="@+id/accountListFragment"
         android:name="com.github.ncliff.passet.presentation.fragments.AccountListFragment"
-        android:label="fragment_account_list"
-        tools:layout="@layout/fragment_account_list" >
+        android:label="Passet"
+        tools:layout="@layout/fragment_account_list">
         <action
             android:id="@+id/action_accountListFragment_to_accountSettingsFragment"
             app:destination="@id/accountSettingsFragment" />
@@ -28,6 +28,15 @@
     <fragment
         android:id="@+id/accountSettingsFragment"
         android:name="com.github.ncliff.passet.presentation.fragments.AccountSettingsFragment"
-        android:label="fragment_account_settings"
-        tools:layout="@layout/fragment_account_settings" />
+        android:label="Date"
+        tools:layout="@layout/fragment_account_settings">
+        <action
+            android:id="@+id/action_accountSettingsFragment_to_searchMapFragment"
+            app:destination="@id/searchMapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchMapFragment"
+        android:name="com.github.ncliff.passet.presentation.fragments.SearchMapFragment"
+        android:label="Map"
+        tools:layout="@layout/fragment_search_map" />
 </navigation>

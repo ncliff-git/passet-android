@@ -1,16 +1,26 @@
 package com.github.ncliff.passet.presentation.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.NumberPicker
+import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.github.ncliff.passet.R
 import com.github.ncliff.passet.data.ColorList
 import com.github.ncliff.passet.data.ColorObject
+import com.github.ncliff.passet.data.DataUtils
 import com.github.ncliff.passet.databinding.FragmentAccountSettingsBinding
 import com.github.ncliff.passet.presentation.adapters.ColorSpinnerAdapter
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.yandex.mapkit.Animation
+import com.yandex.mapkit.MapKitFactory
+import com.yandex.mapkit.geometry.Point
+import com.yandex.mapkit.map.CameraPosition
 
 class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
     private var _binding: FragmentAccountSettingsBinding? = null
@@ -24,7 +34,15 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
         _binding = FragmentAccountSettingsBinding.inflate(inflater, container, false)
         loadColorSpinner()
         checkBoxListeners()
+        numberPickerProcessing()
         return _binding?.root
+    }
+
+    private fun numberPickerProcessing() = with (binding.numberPicker) {
+        maxValue = 32
+        minValue = 6
+        descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+        wrapSelectorWheel = false
     }
 
     private fun loadColorSpinner() {
@@ -42,18 +60,23 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
     }
 
     private fun checkBoxListeners() {
+        
+        binding.mapButton.setOnClickListener {
+            findNavController().navigate(R.id.action_accountSettingsFragment_to_searchMapFragment)
+        }
+
         checkingAllBoxes()
         binding.apply {
-            checkbox1.setOnClickListener {
+            cbNumbers.setOnClickListener {
                 checkingAllBoxes()
             }
-            checkbox2.setOnClickListener {
+            cbLowercase.setOnClickListener {
                 checkingAllBoxes()
             }
-            checkbox3.setOnClickListener {
+            cbUppercase.setOnClickListener {
                 checkingAllBoxes()
             }
-            checkbox4.setOnClickListener {
+            cbSpecialSymbols.setOnClickListener {
                 checkingAllBoxes()
             }
         }
@@ -61,8 +84,8 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
 
     private fun checkingAllBoxes() {
         binding.apply {
-            if (!(checkbox1.isChecked || checkbox2.isChecked || checkbox3.isChecked || checkbox4.isChecked)) {
-                checkbox1.isChecked = true
+            if (!(cbNumbers.isChecked || cbLowercase.isChecked || cbUppercase.isChecked || cbUppercase.isChecked)) {
+                cbNumbers.isChecked = true
             }
         }
     }
@@ -71,4 +94,5 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
         _binding = null
         super.onDestroy()
     }
+
 }

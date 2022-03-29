@@ -16,4 +16,11 @@
     <string name="color_yellow">Жёлтый</string>
     <string name="color_gray">Серый</string>
     <string name="color_blue">Синий</string>
+    <string name="hint_name">Название</string>
+    <string name="hint_login">Логин</string>
+    <string name="hint_password">Пароль</string>
+    <string name="check_box_numbers">Цифры</string>
+    <string name="check_box_lowercase">Нижний регистр</string>
+    <string name="check_box_uppercase">Верхний регистр</string>
+    <string name="check_box_special_symbols">Cпецсимволы</string>
 </resources>

@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
     def nav_version = "2.4.1"
     def lifecycle_version = "2.4.1"
 
@@ -56,4 +57,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
     implementation "androidx.security:security-crypto-ktx:1.1.0-alpha03"
+
+    // Yandex MapKit
+    implementation 'com.yandex.android:maps.mobile:4.0.0-lite'
 }
