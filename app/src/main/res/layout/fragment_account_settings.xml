@@ -11,34 +11,81 @@
         android:layout_height="wrap_content"
         android:padding="20dp">
 
-        <LinearLayout
-            android:id="@+id/color_linearLayout"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/group_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/color_group"
+            android:textSize="20sp"
+            android:textColor="@color/gray_primary"
+            app:layout_constraintStart_toStartOf="@+id/color_radioGroup"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/color_radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/group_text">
 
-            <TextView
-                android:layout_width="90dp"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/roboto_light"
-                android:gravity="start|center"
-                android:text="@string/color"
-                android:textColor="@color/black"
-                android:textSize="30sp" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:elevation="4dp"
+                android:checked="true"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_button_selector"
+                android:backgroundTint="@color/purple_500"/>
 
-            <Spinner
-                android:id="@+id/colorSpinner"
-                android:layout_width="0dp"
-                android:layout_height="65dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@drawable/color_blob"
-                android:gravity="center"
-                android:spinnerMode="dropdown" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:elevation="4dp"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_button_selector"
+                android:backgroundTint="@android:color/holo_orange_dark"/>
 
-        </LinearLayout>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:elevation="4dp"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_button_selector"
+                android:backgroundTint="@android:color/holo_blue_light"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:elevation="4dp"
+                android:button="@android:color/transparent"
+                android:background="@drawable/radio_button_selector"
+                android:backgroundTint="@android:color/holo_green_light"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@android:color/transparent"
+                android:layout_marginEnd="12dp"
+                android:elevation="4dp"
+                android:background="@drawable/radio_button_selector"
+                android:backgroundTint="@android:color/holo_purple"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@android:color/transparent"
+                android:elevation="4dp"
+                android:background="@drawable/radio_button_selector"
+                android:backgroundTint="@android:color/holo_red_light"/>
+
+        </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textFieldName"
@@ -49,7 +96,7 @@
             app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/color_linearLayout">
+            app:layout_constraintTop_toBottomOf="@id/color_radioGroup">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textFieldNameEdit"
@@ -172,6 +219,7 @@
             android:ems="10"
             android:focusable="false"
             android:focusableInTouchMode="false"
+            android:gravity="center"
             android:hint="@string/date_mfg"
             android:importantForAutofill="no"
             android:inputType="date"
@@ -188,6 +236,7 @@
             android:ems="10"
             android:focusable="false"
             android:focusableInTouchMode="false"
+            android:gravity="center"
             android:hint="@string/date_exp"
             android:importantForAutofill="no"
             android:inputType="date"
@@ -203,6 +252,7 @@
             android:layout_marginEnd="20dp"
             android:gravity="center"
             android:textSize="20sp"
+            android:textColor="@color/gray_primary"
             app:layout_constraintBottom_toBottomOf="@+id/map_button"
             app:layout_constraintEnd_toStartOf="@+id/map_button"
             app:layout_constraintStart_toStartOf="@id/editTextDateStart"

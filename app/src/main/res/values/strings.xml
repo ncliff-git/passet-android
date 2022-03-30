@@ -28,4 +28,5 @@
     <string name="date_exp">EXP</string>
     <string name="generate">Generate</string>
     <string name="location">Location</string>
+    <string name="color_group">Color group</string>
 </resources>

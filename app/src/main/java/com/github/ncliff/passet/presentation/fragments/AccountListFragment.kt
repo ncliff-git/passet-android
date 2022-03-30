@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.github.ncliff.passet.R
 import com.github.ncliff.passet.databinding.FragmentAccountListBinding
-import kotlin.system.exitProcess
-
 
 class AccountListFragment : Fragment(R.layout.fragment_account_list) {
     private var _binding: FragmentAccountListBinding? = null
