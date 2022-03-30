@@ -1,10 +1,12 @@
 package com.github.ncliff.passet.presentation.fragments
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.DatePicker
 import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
@@ -21,6 +23,8 @@ import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.map.CameraPosition
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
     private var _binding: FragmentAccountSettingsBinding? = null
@@ -35,7 +39,60 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
         loadColorSpinner()
         checkBoxListeners()
         numberPickerProcessing()
+        datePicker()
+
         return _binding?.root
+    }
+
+    private fun datePicker() {
+        val calendar = Calendar.getInstance()
+
+        val dateStart: DatePickerDialog.OnDateSetListener =
+            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                binding.editTextDateStart.setText(updateCalendar(calendar))
+            }
+
+        val dateEnd: DatePickerDialog.OnDateSetListener =
+            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+                calendar.set(Calendar.YEAR, year)
+                calendar.set(Calendar.MONTH, month)
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+                binding.editTextDateEnd.setText(updateCalendar(calendar))
+            }
+
+        binding.apply {
+            editTextDateStart.setOnClickListener {
+                getDataCalendar(calendar, dateStart)
+                editTextDateStart.setText(updateCalendar(calendar))
+            }
+            editTextDateEnd.setOnClickListener {
+                getDataCalendar(calendar, dateEnd)
+                editTextDateEnd.setText(updateCalendar(calendar))
+            }
+        }
+    }
+
+    private fun getDataCalendar(calendar: Calendar, date: DatePickerDialog.OnDateSetListener) {
+        context?.let { cnt ->
+            DatePickerDialog(
+                cnt,
+                date,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+    }
+
+    private fun updateCalendar(calendar: Calendar): String {
+        val format = "dd.MM.yyyy"
+        val sdf = SimpleDateFormat(format, Locale.US)
+        return sdf.format(calendar.time)
     }
 
     private fun numberPickerProcessing() = with (binding.numberPicker) {
@@ -60,7 +117,7 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
     }
 
     private fun checkBoxListeners() {
-        
+
         binding.mapButton.setOnClickListener {
             findNavController().navigate(R.id.action_accountSettingsFragment_to_searchMapFragment)
         }
@@ -94,5 +151,4 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
         _binding = null
         super.onDestroy()
     }
-
 }

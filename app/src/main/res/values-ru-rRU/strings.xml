@@ -23,4 +23,8 @@
     <string name="check_box_lowercase">Нижний регистр</string>
     <string name="check_box_uppercase">Верхний регистр</string>
     <string name="check_box_special_symbols">Cпецсимволы</string>
+    <string name="date_exp">Истекает</string>
+    <string name="date_mfg">Создан</string>
+    <string name="generate">Создать</string>
+    <string name="location">Геолокация</string>
 </resources>

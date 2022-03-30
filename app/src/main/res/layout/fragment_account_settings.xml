@@ -8,14 +8,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="20dp">
 
         <LinearLayout
             android:id="@+id/color_linearLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -45,10 +44,8 @@
             android:id="@+id/textFieldName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:hint="@string/hint_name"
-
             app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,14 +54,14 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textFieldNameEdit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textFieldLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:hint="@string/hint_login"
             app:endIconMode="clear_text"
@@ -83,7 +80,6 @@
             android:id="@+id/textFieldPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:hint="@string/hint_password"
             app:endIconMode="password_toggle"
@@ -103,7 +99,6 @@
             android:id="@+id/password_gen_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/account_setting_bg_shape"
             android:orientation="horizontal"
@@ -163,17 +158,66 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="20dp"
-                android:text="Generate" />
+                android:text="@string/generate" />
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/editTextDateStart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="@string/date_mfg"
+            android:importantForAutofill="no"
+            android:inputType="date"
+            app:layout_constraintEnd_toStartOf="@id/editTextDateEnd"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_gen_linearLayout" />
+
+        <EditText
+            android:id="@+id/editTextDateEnd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="@string/date_exp"
+            android:importantForAutofill="no"
+            android:inputType="date"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextDateStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/editTextDateStart"
+            app:layout_constraintTop_toTopOf="@+id/editTextDateStart" />
+
+        <TextView
+            android:id="@+id/location_textView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/map_button"
+            app:layout_constraintEnd_toStartOf="@+id/map_button"
+            app:layout_constraintStart_toStartOf="@id/editTextDateStart"
+            app:layout_constraintTop_toTopOf="@+id/map_button"
+            tools:text="55.796391 49.108891" />
 
         <Button
             android:id="@+id/map_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/password_gen_linearLayout"
-            app:layout_constraintTop_toBottomOf="@id/password_gen_linearLayout"
             android:layout_marginTop="20dp"
-            android:text="location"/>
+            android:text="@string/location"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/editTextDateEnd"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDateStart" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
