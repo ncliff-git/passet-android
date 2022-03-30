@@ -27,4 +27,5 @@
     <string name="date_mfg">Создан</string>
     <string name="generate">Создать</string>
     <string name="location">Геолокация</string>
+    <string name="color_group">Цветовая группа</string>
 </resources>
