@@ -9,7 +9,7 @@ import android.widget.NumberPicker
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.github.ncliff.passet.R
-import com.github.ncliff.passet.data.ColorObject
+import com.github.ncliff.passet.data.PasswordManager
 import com.github.ncliff.passet.databinding.FragmentAccountSettingsBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -17,7 +17,6 @@ import java.util.*
 class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
     private var _binding: FragmentAccountSettingsBinding? = null
     private val binding get() = _binding!!
-    lateinit var selectedColor: ColorObject
 
     // TODO: Переписать в объект
     // region object params test
@@ -44,7 +43,7 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
     // region Password generate
 
     private fun initPasswordGen() {
-        checkBoxListeners()
+        passwordGenListeners()
         initNumberPicker()
     }
 
@@ -53,9 +52,10 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
         minValue = 6
         descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
         wrapSelectorWheel = false
+        value = 12
     }
 
-    private fun checkBoxListeners() {
+    private fun passwordGenListeners() {
         checkingAllBoxes()
         binding.apply {
             cbNumbers.setOnClickListener {
@@ -70,12 +70,23 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
             cbSpecialSymbols.setOnClickListener {
                 checkingAllBoxes()
             }
+            generateButton.setOnClickListener {
+                textFieldPasswordEdit.setText(
+                    PasswordManager.generatePassword(
+                        numberPicker.value,
+                        cbNumbers.isChecked,
+                        cbUppercase.isChecked,
+                        cbLowercase.isChecked,
+                        cbSpecialSymbols.isChecked
+                    )
+                )
+            }
         }
     }
 
     private fun checkingAllBoxes() {
         binding.apply {
-            if (!(cbNumbers.isChecked || cbLowercase.isChecked || cbUppercase.isChecked || cbUppercase.isChecked)) {
+            if (!(cbNumbers.isChecked || cbLowercase.isChecked || cbUppercase.isChecked || cbSpecialSymbols.isChecked)) {
                 cbNumbers.isChecked = true
             }
         }

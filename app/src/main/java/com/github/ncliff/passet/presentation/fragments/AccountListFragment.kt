@@ -46,16 +46,7 @@ class AccountListFragment : Fragment(R.layout.fragment_account_list) {
             }
         }
 
-        val requestCoarseLocation = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) {
-                Log.d("TagCheck", "permission granted")
-            } else {
-                Log.d("TagCheck", "permission denied")
-            }
-        }
-
         requestFineLocation.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
-        requestCoarseLocation.launch(android.Manifest.permission.ACCESS_COARSE_LOCATION)
     }
 
     override fun onDestroy() {
