@@ -1,7 +1,6 @@
 package com.github.ncliff.passet.data
 
 import java.security.SecureRandom
-import kotlin.random.Random
 
 class PasswordManager {
     companion object {

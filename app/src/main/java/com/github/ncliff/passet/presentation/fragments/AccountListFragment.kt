@@ -6,14 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.github.ncliff.passet.R
+import com.github.ncliff.passet.data.DataUtils
 import com.github.ncliff.passet.databinding.FragmentAccountListBinding
+import com.github.ncliff.passet.presentation.adapters.MainNotesRecyclerViewAdapter
 
 class AccountListFragment : Fragment(R.layout.fragment_account_list) {
     private var _binding: FragmentAccountListBinding? = null
+    private var rvAdapter: MainNotesRecyclerViewAdapter? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -29,6 +33,16 @@ class AccountListFragment : Fragment(R.layout.fragment_account_list) {
         super.onViewCreated(view, savedInstanceState)
         listeners()
         permissions()
+
+        // TODO: Создать отдельно
+        rvAdapter = MainNotesRecyclerViewAdapter()
+        binding.NotesRecyclerView.adapter = rvAdapter
+
+        binding.addNewAccountButton.setOnLongClickListener {
+            rvAdapter?.addPasswordNotesList(DataUtils.testAddPasswordList())
+            Toast.makeText(context, "LONG", Toast.LENGTH_SHORT).show()
+            true
+        }
     }
 
     private fun listeners() {

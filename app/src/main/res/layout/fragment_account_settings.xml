@@ -1,108 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.fragments.AccountSettingsFragment">
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        tools:context=".presentation.fragments.AccountSettingsFragment"
         android:padding="20dp">
-
-        <TextView
-            android:id="@+id/group_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/color_group"
-            android:textColor="@color/gray_primary"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="@+id/color_radioGroup"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <RadioGroup
-            android:id="@+id/color_radioGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:checkedButton="@id/color_1_RadioButton"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/group_text">
-
-            <RadioButton
-                android:id="@+id/color_1_RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/radio_button_selector"
-                android:backgroundTint="@color/purple_500"
-                android:button="@android:color/transparent"
-                android:elevation="4dp" />
-
-            <RadioButton
-                android:id="@+id/color_2_RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/radio_button_selector"
-                android:backgroundTint="@android:color/holo_orange_dark"
-                android:button="@android:color/transparent"
-                android:elevation="4dp" />
-
-            <RadioButton
-                android:id="@+id/color_3_RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/radio_button_selector"
-                android:backgroundTint="@android:color/holo_blue_light"
-                android:button="@android:color/transparent"
-                android:elevation="4dp" />
-
-            <RadioButton
-                android:id="@+id/color_4_RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/radio_button_selector"
-                android:backgroundTint="@android:color/holo_green_light"
-                android:button="@android:color/transparent"
-                android:elevation="4dp" />
-
-            <RadioButton
-                android:id="@+id/color_5_RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:background="@drawable/radio_button_selector"
-                android:backgroundTint="@android:color/holo_purple"
-                android:button="@android:color/transparent"
-                android:elevation="4dp" />
-
-            <RadioButton
-                android:id="@+id/color_6_RadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/radio_button_selector"
-                android:backgroundTint="@android:color/holo_red_light"
-                android:button="@android:color/transparent"
-                android:elevation="4dp" />
-
-        </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textFieldName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:hint="@string/hint_name"
             app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/color_radioGroup">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textFieldNameEdit"
@@ -157,17 +71,17 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/account_setting_bg_shape"
             android:orientation="horizontal"
+            android:weightSum="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textFieldPassword"
-            android:weightSum="1">
+            app:layout_constraintTop_toBottomOf="@id/textFieldPassword">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <CheckBox
                     android:id="@+id/cb_numbers"
@@ -205,20 +119,20 @@
             </LinearLayout>
 
             <NumberPicker
-                android:layout_weight="1"
                 android:id="@+id/numberPicker"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="20dp" />
+                android:layout_marginHorizontal="20dp"
+                android:layout_weight="1" />
 
             <Button
-                android:layout_weight="1"
                 android:id="@+id/generate_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginEnd="10dp"
+                android:layout_weight="1"
                 android:text="@string/generate" />
         </LinearLayout>
 
@@ -279,9 +193,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/location"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/editTextDateEnd"
             app:layout_constraintTop_toBottomOf="@+id/editTextDateStart" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

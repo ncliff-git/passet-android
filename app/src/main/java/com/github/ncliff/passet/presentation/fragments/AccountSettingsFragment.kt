@@ -2,10 +2,9 @@ package com.github.ncliff.passet.presentation.fragments
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.NumberPicker
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.github.ncliff.passet.R
@@ -18,26 +17,30 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
     private var _binding: FragmentAccountSettingsBinding? = null
     private val binding get() = _binding!!
 
-    // TODO: Переписать в объект
-    // region object params test
-    private var name: String = ""
-    private var login: String = ""
-    private var password: String = ""
-    private var dateStart: String = ""
-    private var dateEnd: String = ""
-    private var locationW: String = ""
-    private var locationH: String = ""
-    // endregion
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAccountSettingsBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
         initPasswordGen()
         initDatePicker()
         initLocation()
         return _binding?.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.account_setting_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_save -> {
+                Toast.makeText(context, "Save!", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     // region Password generate

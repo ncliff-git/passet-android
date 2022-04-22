@@ -36,8 +36,9 @@ android {
 
 dependencies {
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
-    def nav_version = "2.4.1"
+    def nav_version = "2.4.2"
     def lifecycle_version = "2.4.1"
+    def roomVersion = "2.4.2"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -47,6 +48,10 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+    // Material Design
+    implementation 'com.google.android.material:material:1.5.0'
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -60,4 +65,7 @@ dependencies {
 
     // Yandex MapKit
     implementation 'com.yandex.android:maps.mobile:4.0.0-lite'
+
+    // Room
+
 }

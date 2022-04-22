@@ -7,7 +7,7 @@
     <string name="empty_list">Create a password</string>
 
     <string name="content_description_passet_icon">app icon</string>
-    <string name="content_description_add_button">add button</string>
+    <string name="content_description_add_button">add</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="color">Color</string>
     <string name="color_black">Black</string>
@@ -29,4 +29,8 @@
     <string name="generate">Generate</string>
     <string name="location">Location</string>
     <string name="color_group">Color group</string>
+    <string name="save">save</string>
+    <string name="number_of_passwords">Number of passwords</string>
+    <string name="generated_passwords">Generated passwords</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>
