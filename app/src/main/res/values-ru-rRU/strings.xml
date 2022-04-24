@@ -31,4 +31,12 @@
     <string name="save">Сохранено</string>
     <string name="number_of_passwords">Количество паролей</string>
     <string name="generated_passwords">Сгенерированные пароли</string>
+    <string name="menu_home">Главная</string>
+    <string name="menu_generator">Генератор</string>
+    <string name="menu_bookmarks">Закладки</string>
+    <string name="fab_geolocation">геолокация</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="nav_header_title">Passet</string>
+    <string name="nav_header_desc">Иконка passet</string>
+    <string name="menu_settings">Настройки</string>
 </resources>

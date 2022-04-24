@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
-import com.github.ncliff.passet.R
 import com.github.ncliff.passet.data.PasswordManager
 import com.github.ncliff.passet.databinding.FragmentPasswordGeneratorBinding
 
@@ -27,15 +26,18 @@ class PasswordGeneratorFragment : Fragment() {
 
     private fun initPasswordGen() {
         passwordGenListeners()
-        initNumberPicker()
+        initNumberPickers()
     }
 
-    private fun initNumberPicker() = with (binding.numberPicker) {
-        maxValue = 32
-        minValue = 6
-        descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
-        wrapSelectorWheel = false
-        value = 12
+    private fun initNumberPickers() = with (binding) {
+        numberOfPasswordsNumberPicker.max = 25
+        numberOfPasswordsNumberPicker.min = 1
+        numberOfPasswordsNumberPicker.setNumber(10)
+        numberPicker.maxValue = 32
+        numberPicker.minValue = 6
+        numberPicker.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+        numberPicker.wrapSelectorWheel = false
+        numberPicker.value = 12
     }
 
     private fun passwordGenListeners() {
@@ -53,18 +55,21 @@ class PasswordGeneratorFragment : Fragment() {
             cbSpecialSymbols.setOnClickListener {
                 checkingAllBoxes()
             }
-            // TODO: Переделать работу generateButton в PasswordGeneratorFragment
-//            generateButton.setOnClickListener {
-//                textFieldPasswordEdit.setText(
-//                    PasswordManager.generatePassword(
-//                        numberPicker.value,
-//                        cbNumbers.isChecked,
-//                        cbUppercase.isChecked,
-//                        cbLowercase.isChecked,
-//                        cbSpecialSymbols.isChecked
-//                    )
-//                )
-//            }
+
+            generateButton.setOnClickListener {
+                var str = ""
+                for (i in 0..numberOfPasswordsNumberPicker.getNumber()) {
+                    str += PasswordManager.generatePassword(
+                        numberPicker.value,
+                        cbNumbers.isChecked,
+                        cbUppercase.isChecked,
+                        cbLowercase.isChecked,
+                        cbSpecialSymbols.isChecked
+                    )
+                    str += "\n"
+                }
+                editTextPasswords.setText(str)
+            }
         }
     }
 

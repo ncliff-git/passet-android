@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.fragments.PinCodeFragment">
+    tools:context=".presentation.activitys.EntryActivity">
 
     <TextView
         android:id="@+id/pin_code_text"
@@ -203,9 +203,7 @@
 
             <View
                 android:layout_width="@dimen/numpad_button_size"
-                android:layout_height="@dimen/numpad_button_size"
-
-                />
+                android:layout_height="@dimen/numpad_button_size" />
 
             <Button
                 android:id="@+id/num_0"

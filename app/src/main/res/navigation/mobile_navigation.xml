@@ -3,40 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/pinCodeFragment">
+    app:startDestination="@+id/home_navigation">
+
+    <include app:graph="@navigation/home_navigation" />
+
+    <include app:graph="@navigation/generator_navigation"
+        android:label="@string/menu_generator"/>
 
     <fragment
-        android:id="@+id/pinCodeFragment"
-        android:name="com.github.ncliff.passet.presentation.fragments.PinCodeFragment"
-        android:label="Passet"
-        tools:layout="@layout/fragment_pin_code">
-        <action
-            android:id="@+id/action_pinCodeFragment_to_accountListFragment"
-            app:destination="@id/accountListFragment"
-            app:enterAnim="@anim/to_left"
-            app:exitAnim="@anim/from_right" />
-    </fragment>
-    <fragment
-        android:id="@+id/accountListFragment"
-        android:name="com.github.ncliff.passet.presentation.fragments.AccountListFragment"
-        android:label="Passet"
-        tools:layout="@layout/fragment_account_list">
-        <action
-            android:id="@+id/action_accountListFragment_to_accountSettingsFragment"
-            app:destination="@id/accountSettingsFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/accountSettingsFragment"
-        android:name="com.github.ncliff.passet.presentation.fragments.AccountSettingsFragment"
-        android:label="Date"
-        tools:layout="@layout/fragment_account_settings">
-        <action
-            android:id="@+id/action_accountSettingsFragment_to_searchMapFragment"
-            app:destination="@id/searchMapFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchMapFragment"
-        android:name="com.github.ncliff.passet.presentation.fragments.SearchMapFragment"
-        android:label="Map"
-        tools:layout="@layout/fragment_search_map" />
+        android:id="@+id/nav_slideshow"
+        android:name="com.github.ncliff.passet.presentation.activitys.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_bookmarks"
+        tools:layout="@layout/fragment_slideshow" />
+
+    <include app:graph="@navigation/settings_navigation" />
+
 </navigation>

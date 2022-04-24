@@ -25,7 +25,6 @@ class AccountListFragment : Fragment(R.layout.fragment_account_list) {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAccountListBinding.inflate(inflater, container, false)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         return _binding?.root
     }
 
@@ -33,16 +32,6 @@ class AccountListFragment : Fragment(R.layout.fragment_account_list) {
         super.onViewCreated(view, savedInstanceState)
         listeners()
         permissions()
-
-        // TODO: Создать отдельно
-        rvAdapter = MainNotesRecyclerViewAdapter()
-        binding.NotesRecyclerView.adapter = rvAdapter
-
-        binding.addNewAccountButton.setOnLongClickListener {
-            rvAdapter?.addPasswordNotesList(DataUtils.testAddPasswordList())
-            Toast.makeText(context, "LONG", Toast.LENGTH_SHORT).show()
-            true
-        }
     }
 
     private fun listeners() {
