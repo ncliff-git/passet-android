@@ -9,13 +9,6 @@
     <string name="content_description_passet_icon">app icon</string>
     <string name="content_description_add_button">add</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="color">Color</string>
-    <string name="color_black">Black</string>
-    <string name="color_red">Red</string>
-    <string name="color_green">Green</string>
-    <string name="color_yellow">Yellow</string>
-    <string name="color_gray">Gray</string>
-    <string name="color_blue">Blue</string>
     <string name="hint_name">Name</string>
     <string name="hint_login">Login</string>
     <string name="hint_password">Password</string>
@@ -28,12 +21,10 @@
     <string name="date_exp">EXP</string>
     <string name="generate">Generate</string>
     <string name="location">Location</string>
-    <string name="color_group">Color group</string>
     <string name="save">save</string>
     <string name="number_of_passwords">Number of passwords</string>
     <string name="generated_passwords">Generated passwords</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="nav_header_title">Passet</string>
     <string name="nav_header_desc">Passet icon</string>
     <string name="menu_settings">Settings</string>
 
@@ -41,19 +32,15 @@
     <string name="menu_generator">Generator</string>
     <string name="menu_bookmarks">Bookmarks</string>
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <string name="header_generator">Password generator</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="fab_geolocation">geolocation</string>
+    <string name="additional_characters_title">Use additional characters</string>
+    <string name="additional_characters_summary_on"><![CDATA[Additional characters are used ( !\"&\'+,-./:;<=>[]^_`{|} )]]></string>
+    <string name="additional_characters_summary_off"><![CDATA[Additional characters are not used ( !\"&\'+,-./:;<=>[]^_`{|} )]]></string>
+    <!-- TODO: Remove or change this placeholder text -->
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

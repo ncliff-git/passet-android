@@ -1,8 +1,6 @@
-package com.github.ncliff.passet.presentation.activitys
+package com.github.ncliff.passet.presentation.ui
 
 import android.os.Bundle
-import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -37,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.home_navigation, R.id.generator_navigation, R.id.nav_slideshow, R.id.settings_navigation
+                R.id.home_navigation, R.id.generator_navigation, R.id.bookmarks_navigation, R.id.settings_navigation
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

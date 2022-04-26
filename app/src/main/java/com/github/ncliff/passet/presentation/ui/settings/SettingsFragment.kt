@@ -1,4 +1,4 @@
-package com.github.ncliff.passet.presentation.fragments
+package com.github.ncliff.passet.presentation.ui.settings
 
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat

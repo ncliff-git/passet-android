@@ -1,4 +1,4 @@
-package com.github.ncliff.passet.presentation.fragments
+package com.github.ncliff.passet.presentation.ui.home
 
 import android.os.Bundle
 import android.view.*

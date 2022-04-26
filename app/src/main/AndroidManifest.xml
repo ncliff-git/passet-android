@@ -14,12 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Passet">
         <activity
-            android:name=".presentation.activitys.MainActivity"
+            android:name=".presentation.ui.MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Passet.NoActionBar" />
         <activity
-            android:name=".presentation.activitys.EntryActivity"
+            android:name=".presentation.ui.EntryActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

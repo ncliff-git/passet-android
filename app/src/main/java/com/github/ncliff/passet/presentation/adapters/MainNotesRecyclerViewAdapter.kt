@@ -23,7 +23,7 @@ class MainNotesRecyclerViewAdapter() : RecyclerView.Adapter<MainNotesRecyclerVie
     private fun getItem(position: Int) = _passwordNoteArrayList[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_account, parent, false))
+        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))

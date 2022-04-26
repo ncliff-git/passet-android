@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bookmarks_navigation"
+    app:startDestination="@id/bookmarksFragment">
+
+    <fragment
+        android:id="@+id/bookmarksFragment"
+        android:name="com.github.ncliff.passet.presentation.ui.bookmarks.BookmarksFragment"
+        android:label="fragment_bookmarks"
+        tools:layout="@layout/fragment_bookmarks">
+        <action
+            android:id="@+id/action_bookmarksFragment_to_accountSettingsFragment2"
+            app:destination="@id/accountSettingsFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/accountSettingsFragment2"
+        android:name="com.github.ncliff.passet.presentation.ui.home.NoteSettingsFragment"
+        android:label="fragment_account_settings"
+        tools:layout="@layout/fragment_note_settings" />
+</navigation>

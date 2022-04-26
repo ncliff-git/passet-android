@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/accountListFragment"
-        android:name="com.github.ncliff.passet.presentation.fragments.AccountListFragment"
+        android:name="com.github.ncliff.passet.presentation.ui.home.NoteListFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_account_list" >
+        tools:layout="@layout/fragment_note_list" >
         <action
             android:id="@+id/action_accountListFragment_to_accountSettingsFragment"
             app:destination="@id/accountSettingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/accountSettingsFragment"
-        android:name="com.github.ncliff.passet.presentation.fragments.AccountSettingsFragment"
+        android:name="com.github.ncliff.passet.presentation.ui.home.NoteSettingsFragment"
         android:label="Notes"
-        tools:layout="@layout/fragment_account_settings" >
+        tools:layout="@layout/fragment_note_settings" >
         <action
             android:id="@+id/action_accountSettingsFragment_to_searchMapFragment"
             app:destination="@id/searchMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchMapFragment"
-        android:name="com.github.ncliff.passet.presentation.fragments.SearchMapFragment"
+        android:name="com.github.ncliff.passet.presentation.ui.home.SearchMapFragment"
         android:label="Map"
         tools:layout="@layout/fragment_search_map" />
 </navigation>

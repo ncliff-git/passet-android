@@ -1,4 +1,4 @@
-package com.github.ncliff.passet.presentation.fragments
+package com.github.ncliff.passet.presentation.ui.home
 
 import android.os.Bundle
 import android.util.Log
@@ -6,17 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.github.ncliff.passet.R
-import com.github.ncliff.passet.data.DataUtils
-import com.github.ncliff.passet.databinding.FragmentAccountListBinding
+import com.github.ncliff.passet.databinding.FragmentNoteListBinding
 import com.github.ncliff.passet.presentation.adapters.MainNotesRecyclerViewAdapter
 
-class AccountListFragment : Fragment(R.layout.fragment_account_list) {
-    private var _binding: FragmentAccountListBinding? = null
+class NoteListFragment : Fragment(R.layout.fragment_note_list) {
+    private var _binding: FragmentNoteListBinding? = null
     private var rvAdapter: MainNotesRecyclerViewAdapter? = null
     private val binding get() = _binding!!
 
@@ -24,7 +21,7 @@ class AccountListFragment : Fragment(R.layout.fragment_account_list) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAccountListBinding.inflate(inflater, container, false)
+        _binding = FragmentNoteListBinding.inflate(inflater, container, false)
         return _binding?.root
     }
 

@@ -1,4 +1,4 @@
-package com.github.ncliff.passet.presentation.fragments
+package com.github.ncliff.passet.presentation.ui.home
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -7,21 +7,22 @@ import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.github.ncliff.passet.R
 import com.github.ncliff.passet.data.PasswordManager
-import com.github.ncliff.passet.databinding.FragmentAccountSettingsBinding
+import com.github.ncliff.passet.databinding.FragmentNoteSettingsBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
-    private var _binding: FragmentAccountSettingsBinding? = null
+class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
+    private var _binding: FragmentNoteSettingsBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAccountSettingsBinding.inflate(inflater, container, false)
+        _binding = FragmentNoteSettingsBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         initPasswordGen()
         initDatePicker()
@@ -74,13 +75,17 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
                 checkingAllBoxes()
             }
             generateButton.setOnClickListener {
+                val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
+                val additionalSpecialSymbols = sp.getBoolean("additional_characters", false)
+
                 textFieldPasswordEdit.setText(
                     PasswordManager.generatePassword(
                         numberPicker.value,
                         cbNumbers.isChecked,
                         cbUppercase.isChecked,
                         cbLowercase.isChecked,
-                        cbSpecialSymbols.isChecked
+                        cbSpecialSymbols.isChecked,
+                        additionalSpecialSymbols
                     )
                 )
             }

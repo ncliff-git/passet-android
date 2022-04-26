@@ -1,4 +1,4 @@
-package com.github.ncliff.passet.presentation.activitys
+package com.github.ncliff.passet.presentation.ui
 
 import android.content.Context
 import android.content.Intent
@@ -7,7 +7,6 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import com.github.ncliff.passet.R
 import com.github.ncliff.passet.data.DataUtils
 import com.github.ncliff.passet.databinding.ActivityEntryBinding

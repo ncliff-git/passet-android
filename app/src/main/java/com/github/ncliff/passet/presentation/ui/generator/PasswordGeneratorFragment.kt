@@ -1,4 +1,4 @@
-package com.github.ncliff.passet.presentation.fragments
+package com.github.ncliff.passet.presentation.ui.generator
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
+import androidx.preference.PreferenceManager
 import com.github.ncliff.passet.data.PasswordManager
 import com.github.ncliff.passet.databinding.FragmentPasswordGeneratorBinding
 
@@ -57,6 +58,9 @@ class PasswordGeneratorFragment : Fragment() {
             }
 
             generateButton.setOnClickListener {
+                val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
+                val additionalSpecialSymbols = sp.getBoolean("additional_characters", false)
+
                 var str = ""
                 for (i in 0..numberOfPasswordsNumberPicker.getNumber()) {
                     str += PasswordManager.generatePassword(
@@ -64,7 +68,8 @@ class PasswordGeneratorFragment : Fragment() {
                         cbNumbers.isChecked,
                         cbUppercase.isChecked,
                         cbLowercase.isChecked,
-                        cbSpecialSymbols.isChecked
+                        cbSpecialSymbols.isChecked,
+                        additionalSpecialSymbols
                     )
                     str += "\n"
                 }
