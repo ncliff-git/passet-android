@@ -3,25 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_navigation"
-    app:startDestination="@id/accountListFragment">
+    app:startDestination="@id/noteListFragment">
 
     <fragment
-        android:id="@+id/accountListFragment"
+        android:id="@+id/noteListFragment"
         android:name="com.github.ncliff.passet.presentation.ui.home.NoteListFragment"
         android:label="Home"
         tools:layout="@layout/fragment_note_list" >
         <action
-            android:id="@+id/action_accountListFragment_to_accountSettingsFragment"
-            app:destination="@id/accountSettingsFragment" />
+            android:id="@+id/action_noteListFragment_to_noteSettingsFragment"
+            app:destination="@id/noteSettingsFragment"
+            app:popUpTo="@id/noteListFragment" />
     </fragment>
     <fragment
-        android:id="@+id/accountSettingsFragment"
+        android:id="@+id/noteSettingsFragment"
         android:name="com.github.ncliff.passet.presentation.ui.home.NoteSettingsFragment"
         android:label="Notes"
         tools:layout="@layout/fragment_note_settings" >
         <action
-            android:id="@+id/action_accountSettingsFragment_to_searchMapFragment"
-            app:destination="@id/searchMapFragment" />
+            android:id="@+id/action_noteSettingsFragment_to_searchMapFragment"
+            app:destination="@id/searchMapFragment"
+            app:popUpTo="@id/noteSettingsFragment" />
+        <argument
+            android:name="note_id"
+            app:argType="integer"
+            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/searchMapFragment"

@@ -5,10 +5,8 @@
     <string name="pin_code_repeat">Repeat the pin code</string>
     <string name="pin_code_error">Wrong pin code</string>
     <string name="empty_list">Create a password</string>
-
     <string name="content_description_passet_icon">app icon</string>
     <string name="content_description_add_button">add</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hint_name">Name</string>
     <string name="hint_login">Login</string>
     <string name="hint_password">Password</string>
@@ -16,7 +14,6 @@
     <string name="check_box_lowercase">LowerCase</string>
     <string name="check_box_uppercase">UpperCase</string>
     <string name="check_box_special_symbols">Special symbols</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="date_mfg">MFG</string>
     <string name="date_exp">EXP</string>
     <string name="generate">Generate</string>
@@ -41,6 +38,6 @@
     <string name="additional_characters_title">Use additional characters</string>
     <string name="additional_characters_summary_on"><![CDATA[Additional characters are used ( !\"&\'+,-./:;<=>[]^_`{|} )]]></string>
     <string name="additional_characters_summary_off"><![CDATA[Additional characters are not used ( !\"&\'+,-./:;<=>[]^_`{|} )]]></string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="must_be_filled">Must be filled in</string>
+    <string name="need_select_dates">You need to select dates</string>
 </resources>

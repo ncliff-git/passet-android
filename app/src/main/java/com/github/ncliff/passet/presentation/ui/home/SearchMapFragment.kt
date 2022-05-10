@@ -3,7 +3,10 @@ package com.github.ncliff.passet.presentation.ui.home
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResult
+import androidx.navigation.fragment.findNavController
 import com.github.ncliff.passet.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.yandex.mapkit.Animation
@@ -21,6 +24,8 @@ import com.yandex.runtime.ui_view.ViewProvider
 class SearchMapFragment : Fragment() {
     private var mapView: MapView? = null
     private var locationButton: FloatingActionButton? = null
+    private var locationLongitude: Double = 0.0
+    private var locationLatitude: Double = 0.0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +41,14 @@ class SearchMapFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.map_selector_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_save_position) {
+            setFragmentResult("location", bundleOf("longitude" to locationLongitude, "latitude" to locationLatitude))
+            findNavController().navigateUp()
+        }
+        return true
     }
 
     private fun initYandexMap() {
@@ -62,6 +75,9 @@ class SearchMapFragment : Fragment() {
                     Animation(Animation.Type.SMOOTH, 1f),
                     null
                 )
+
+                locationLongitude = location.position.longitude
+                locationLatitude = location.position.latitude
 
                 mapView?.map?.mapObjects?.clear()
                 mapView?.map?.mapObjects?.addPlacemark(location.position, ViewProvider(drawablePoint))
