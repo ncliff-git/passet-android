@@ -15,14 +15,11 @@ import com.yandex.mapkit.location.Location
 import java.text.SimpleDateFormat
 import java.util.*
 
-class NotesAdapter(
-    private val clickListener: (id: Int) -> Unit,
-    private val longClickListener: (id: Int) -> Unit
-) : RecyclerView.Adapter<NotesAdapter.NoteViewHolder>() {
-    private var _noteList = emptyList<Note>()
+class BookwormNotesAdapter(private val clickListener: (id: Int) -> Unit): RecyclerView.Adapter<BookwormNotesAdapter.NotesAdapter>() {
+    private var listNote = emptyList<Note>()
     private var location: Location? = null
 
-    class NoteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class NotesAdapter(view: View) : RecyclerView.ViewHolder(view) {
         private val textName: TextView? = view.findViewById(R.id.cardName)
         private val textLogin: TextView? = view.findViewById(R.id.cardLogin)
         private val textDays: TextView? = view.findViewById(R.id.cardDays)
@@ -35,16 +32,7 @@ class NotesAdapter(
             val oneDay = (24 * 60 * 60 * 1000).toLong()
             val time = (end.time - calendar.time.time) / oneDay
 
-            if (note.bookworm) {
-                cardLine?.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.roby))
-            } else {
-                cardLine?.setBackgroundColor(
-                    ContextCompat.getColor(
-                        itemView.context,
-                        R.color.gray_dark
-                    )
-                )
-            }
+            cardLine?.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.roby))
             textName?.text = note.name
             textLogin?.text = note.login
             textDays?.text = "$time day"
@@ -62,7 +50,7 @@ class NotesAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun setNoteList(noteList: List<Note>) {
-        _noteList = noteList
+        listNote = noteList
         notifyDataSetChanged()
     }
 
@@ -72,14 +60,14 @@ class NotesAdapter(
         notifyDataSetChanged()
     }
 
-    private fun getItem(position: Int) = _noteList[position]
+    private fun getItem(position: Int) = listNote[position]
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false)
-        return NoteViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotesAdapter {
+        val layout = LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false)
+        return NotesAdapter(layout)
     }
 
-    override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: NotesAdapter, position: Int) {
         holder.bind(getItem(position), location)
         holder.itemView.setOnClickListener {
             val itemId = getItem(position).id
@@ -87,14 +75,7 @@ class NotesAdapter(
                 clickListener(itemId)
             }
         }
-        holder.itemView.setOnLongClickListener {
-            val itemId = getItem(position).id
-            if (itemId != null) {
-                longClickListener(itemId)
-            }
-            true
-        }
     }
 
-    override fun getItemCount() = _noteList.size
+    override fun getItemCount() = listNote.size
 }

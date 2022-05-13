@@ -16,6 +16,7 @@ import com.github.ncliff.passet.R
 import com.github.ncliff.passet.data.PasswordManager
 import com.github.ncliff.passet.data.database.Note
 import com.github.ncliff.passet.databinding.FragmentNoteSettingsBinding
+import com.github.ncliff.passet.presentation.models.SharedDatabaseViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,8 +26,9 @@ class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
     private var longitude: Double? = null
     private var latitude: Double? = null
     private val args: NoteSettingsFragmentArgs by navArgs()
+    private var bookmark = false
     private val viewModel by lazy {
-        ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
+        ViewModelProvider(requireActivity()).get(SharedDatabaseViewModel::class.java)
     }
 
     override fun onCreateView(
@@ -35,48 +37,11 @@ class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
     ): View? {
         _binding = FragmentNoteSettingsBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
-
+        completionFields()
         initPasswordGen()
         initDatePicker()
         initLocation()
-        completionFields()
-
         return _binding?.root
-    }
-
-    private fun completionFields() {
-        val noteId = args.noteId
-
-        Log.d("List", "note id: $noteId")
-        if (noteId != -1) {
-            viewModel.getAllNotes().observe(viewLifecycleOwner) { noteList ->
-                noteList.forEach {
-                    Log.d("List", "Search id: $noteId itId: ${it.id}")
-                    if (it.id == noteId) {
-                        Log.d("List", "Id: $noteId")
-                        binding.textFieldNameEdit.setText(it.name)
-                        binding.textFieldLoginEdit.setText(it.login)
-                        binding.textFieldPasswordEdit.setText(it.password)
-                        binding.editTextDateStart.setText(it.dateStart)
-                        binding.editTextDateEnd.setText(it.dateEnd)
-                        longitude = it.locationLongitude
-                        latitude = it.locationLatitude
-                        binding.locationTextView.text = "$longitude $latitude"
-                    }
-                }
-            }
-//            viewModel.findNoteById(noteId)
-//            viewModel.noteById.observe(viewLifecycleOwner) {
-//                Log.d("List", "Id: $noteId")
-//                binding.textFieldNameEdit.setText(it.name)
-//                binding.textFieldLoginEdit.setText(it.login)
-//                binding.textFieldPasswordEdit.setText(it.password)
-//                binding.editTextDateStart.setText(it.dateStart)
-//                binding.editTextDateEnd.setText(it.dateEnd)
-//                longitude = it.locationLongitude
-//                latitude = it.locationLatitude
-//                binding.locationTextView.text = "$longitude $latitude"
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -86,11 +51,13 @@ class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_save -> {
-                // TODO: Добавить запрет на обратный переход при неудачной проверке uiCheckFields()
-                when (uiCheckFields()) {
+                when (checkAllFields()) {
                     true -> {
-                        viewModel.insert(createInstanceNote()) {
-                            Log.d("List", "Insert")
+                        val noteId = args.noteId
+                        if (noteId == -1) {
+                            viewModel.insert(setBindingToNote()) {}
+                        } else {
+                            viewModel.update(setBindingToNote(noteId = noteId)) {}
                         }
                         findNavController().navigateUp()
                         true
@@ -102,7 +69,21 @@ class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
         }
     }
 
-    private fun uiCheckFields(): Boolean {
+    /**
+     * Получение данных из БД по id
+     */
+    private fun completionFields() {
+        val noteId = args.noteId
+        if (noteId != -1)
+            viewModel.findNoteById(noteId).observe(viewLifecycleOwner) {
+                setNoteToBinding(it)
+            }
+    }
+
+    /**
+     * Проверяет все поля на корректность данных
+     */
+    private fun checkAllFields(): Boolean {
         if (binding.textFieldNameEdit.text.isNullOrEmpty()) {
             binding.textFieldName.error = resources.getText(R.string.must_be_filled)
         }
@@ -120,21 +101,45 @@ class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
             binding.textFieldLoginEdit.text.isNullOrEmpty() ||
             binding.textFieldPasswordEdit.text.isNullOrEmpty() ||
             binding.editTextDateStart.text.isNullOrEmpty() ||
-            binding.editTextDateEnd.text.isNullOrEmpty()) {
+            binding.editTextDateEnd.text.isNullOrEmpty()
+        ) {
             return false
         }
         return true
     }
 
-     // TODO: Убрать или нет
-    private fun createInstanceNote() : Note {
+    /**
+     * Переносит данные из объекта Note в поля фрагмена
+     */
+    private fun setNoteToBinding(note: Note) {
+        binding.textFieldNameEdit.setText(note.name)
+        binding.textFieldLoginEdit.setText(note.login)
+        binding.textFieldPasswordEdit.setText(note.password)
+        binding.editTextDateStart.setText(note.dateStart)
+        binding.editTextDateEnd.setText(note.dateEnd)
+        bookmark = note.bookworm
+        if (longitude == null && latitude == null) {
+            longitude = note.locationLongitude
+            latitude = note.locationLatitude
+        }
+        if (longitude != null && latitude != null) {
+            binding.locationTextView.text = "$longitude $latitude"
+        }
+    }
+
+    /**
+     * Запонляет все данные из полей в Note
+     */
+    private fun setBindingToNote(noteId: Int? = null): Note {
+        Log.d("List", "$longitude $latitude")
         return Note(
-            id = null,
+            id = noteId,
             name = binding.textFieldNameEdit.text.toString(),
             login = binding.textFieldLoginEdit.text.toString(),
             password = binding.textFieldPasswordEdit.text.toString(),
-            dateStart = binding.editTextDateStart.toString(),
-            dateEnd = binding.editTextDateEnd.toString(),
+            dateStart = binding.editTextDateStart.text.toString(),
+            dateEnd = binding.editTextDateEnd.text.toString(),
+            bookworm = bookmark,
             locationLongitude = longitude,
             locationLatitude = latitude,
         )
@@ -142,57 +147,47 @@ class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
 
     // region Password generate
 
-    private fun initPasswordGen() {
-        passwordGenListeners()
-        initNumberPicker()
-    }
+    /**
+     * генерация паролей
+     */
+    private fun initPasswordGen() = with(binding) {
+        numberPicker.maxValue = 32
+        numberPicker.minValue = 6
+        numberPicker.descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+        numberPicker.wrapSelectorWheel = false
+        numberPicker.value = 12
 
-    private fun initNumberPicker() = with (binding.numberPicker) {
-        maxValue = 32
-        minValue = 6
-        descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
-        wrapSelectorWheel = false
-        value = 12
-    }
-
-    private fun passwordGenListeners() {
-        checkingAllBoxes()
-        binding.apply {
-            cbNumbers.setOnClickListener {
-                checkingAllBoxes()
-            }
-            cbLowercase.setOnClickListener {
-                checkingAllBoxes()
-            }
-            cbUppercase.setOnClickListener {
-                checkingAllBoxes()
-            }
-            cbSpecialSymbols.setOnClickListener {
-                checkingAllBoxes()
-            }
-            generateButton.setOnClickListener {
-                val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
-                val additionalSpecialSymbols = sp.getBoolean("additional_characters", false)
-
-                textFieldPasswordEdit.setText(
-                    PasswordManager.generatePassword(
-                        numberPicker.value,
-                        cbNumbers.isChecked,
-                        cbUppercase.isChecked,
-                        cbLowercase.isChecked,
-                        cbSpecialSymbols.isChecked,
-                        additionalSpecialSymbols
-                    )
+        checkRadioButtonsPressed()
+        cbNumbers.setOnClickListener { checkRadioButtonsPressed() }
+        cbLowercase.setOnClickListener { checkRadioButtonsPressed() }
+        cbUppercase.setOnClickListener { checkRadioButtonsPressed() }
+        cbSpecialSymbols.setOnClickListener { checkRadioButtonsPressed() }
+        generateButton.setOnClickListener {
+            val sp = PreferenceManager.getDefaultSharedPreferences(requireContext())
+            val additionalSpecialSymbols = sp.getBoolean("additional_characters", false)
+            textFieldPasswordEdit.setText(
+                PasswordManager.generatePassword(
+                    numberPicker.value,
+                    cbNumbers.isChecked,
+                    cbUppercase.isChecked,
+                    cbLowercase.isChecked,
+                    cbSpecialSymbols.isChecked,
+                    additionalSpecialSymbols
                 )
-            }
+            )
         }
     }
 
-    private fun checkingAllBoxes() {
-        binding.apply {
-            if (!(cbNumbers.isChecked || cbLowercase.isChecked || cbUppercase.isChecked || cbSpecialSymbols.isChecked)) {
-                cbNumbers.isChecked = true
-            }
+    /**
+     * Установка значения true для первого чекбокса если всех чекбоксах установлен false
+     */
+    private fun checkRadioButtonsPressed() {
+        if (!(binding.cbNumbers.isChecked
+                    || binding.cbLowercase.isChecked
+                    || binding.cbUppercase.isChecked
+                    || binding.cbSpecialSymbols.isChecked)
+        ) {
+            binding.cbNumbers.isChecked = true
         }
     }
     // endregion
@@ -258,6 +253,9 @@ class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
 
     // region Location
 
+    /**
+     * Переход и получение результата из фрагмента карты
+     */
     private fun initLocation() {
         binding.mapButton.setOnClickListener {
             findNavController().navigate(R.id.action_noteSettingsFragment_to_searchMapFragment)

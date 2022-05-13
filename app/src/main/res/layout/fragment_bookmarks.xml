@@ -6,6 +6,7 @@
     tools:context=".presentation.ui.bookmarks.BookmarksFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookmarks_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_note" />

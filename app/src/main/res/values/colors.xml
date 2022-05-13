@@ -11,4 +11,6 @@
     <color name="gray_primary">#FF616161</color>
     <color name="gray_light">#FF8E8E8E</color>
     <color name="gray_dark">#FF373737</color>
+
+    <color name="roby">#900603</color>
 </resources>

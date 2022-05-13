@@ -10,10 +10,13 @@ interface NoteDao {
     fun getAll(): LiveData<List<Note>>
 
     @Query("SELECT * FROM note WHERE note_bookworm = 1")
-    suspend fun getAllBookworm(): List<Note>
+    fun getAllBookworm(): LiveData<List<Note>>
 
     @Query("SELECT * FROM note WHERE id = :id")
-    suspend fun findById(id: Int): Note
+    fun findById(id: Int): LiveData<Note>
+
+    @Query("UPDATE note SET note_bookworm = NOT(note_bookworm) WHERE id = :id")
+    suspend fun bookwormUpdate(id: Int)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(vararg note: Note)
