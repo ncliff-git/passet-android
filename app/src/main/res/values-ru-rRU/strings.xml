@@ -9,13 +9,6 @@
 
     <string name="content_description_passet_icon">значок приложения</string>
     <string name="content_description_add_button">кнопка добавления</string>
-    <string name="color">Цвет</string>
-    <string name="color_black">Черный</string>
-    <string name="color_red">Красный</string>
-    <string name="color_green">Зелёный</string>
-    <string name="color_yellow">Жёлтый</string>
-    <string name="color_gray">Серый</string>
-    <string name="color_blue">Синий</string>
     <string name="hint_name">Название</string>
     <string name="hint_login">Логин</string>
     <string name="hint_password">Пароль</string>
@@ -27,8 +20,20 @@
     <string name="date_mfg">Создан</string>
     <string name="generate">Создать</string>
     <string name="location">Геолокация</string>
-    <string name="color_group">Цветовая группа</string>
     <string name="save">Сохранено</string>
     <string name="number_of_passwords">Количество паролей</string>
     <string name="generated_passwords">Сгенерированные пароли</string>
+    <string name="menu_home">Главная</string>
+    <string name="menu_generator">Генератор</string>
+    <string name="menu_bookmarks">Закладки</string>
+    <string name="fab_geolocation">геолокация</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="nav_header_desc">Иконка passet</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="header_generator">Генератор паролей</string>
+    <string name="additional_characters_title">Использовать дополнительные символы</string>
+    <string name="additional_characters_summary_on"><![CDATA[Используются дополнительные символы ( !\"&\'+,-./:;<=>[]^_`{|} )]]></string>
+    <string name="additional_characters_summary_off"><![CDATA[Дополнительные символы не используются ( !\"&\'+,-./:;<=>[]^_`{|} )]]></string>
+    <string name="must_be_filled">Должны быть заполнено</string>
+    <string name="need_select_dates">Требуется выбрать даты</string>
 </resources>

@@ -9,14 +9,18 @@ class PasswordManager {
             withNumbers: Boolean,
             withUpperCase: Boolean,
             withLowerCase: Boolean,
-            withSpecialSymbols: Boolean
+            withSpecialSymbols: Boolean,
+            withAdditionalSpecialSymbols: Boolean
         ): String {
             var symbols = ""
 
             if (withNumbers) symbols += numberChars
             if (withUpperCase) symbols += upperCaseChars
             if (withLowerCase) symbols += lowerCaseChars
-            if (withSpecialSymbols) symbols += specialSymbolsChars
+            if (withSpecialSymbols){
+                symbols += specialSymbolsChars
+                if (withAdditionalSpecialSymbols) symbols += additionalSpecialSymbolsChars
+            }
 
             val random = SecureRandom.getInstance("SHA1PRNG")
 
@@ -33,6 +37,7 @@ class PasswordManager {
         private const val numberChars = "0123456789"
         private const val upperCaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         private const val lowerCaseChars = "abcdefghijklmnopqrstuvwxyz"
-        private const val specialSymbolsChars = "!\"#\$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+        private const val additionalSpecialSymbolsChars = "!\"&'+,-./:;<=>[\\]^_`{|}"
+        private const val specialSymbolsChars = "%*()?@#\$~"
     }
 }

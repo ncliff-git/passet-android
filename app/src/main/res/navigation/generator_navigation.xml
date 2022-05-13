@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/generator_navigation"
+    app:startDestination="@id/passwordGeneratorFragment">
+
+    <fragment
+        android:id="@+id/passwordGeneratorFragment"
+        android:name="com.github.ncliff.passet.presentation.ui.generator.PasswordGeneratorFragment"
+        android:label="@string/menu_generator"
+        tools:layout="@layout/fragment_password_generator" />
+</navigation>
