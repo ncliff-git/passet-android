@@ -40,4 +40,8 @@
     <string name="additional_characters_summary_off"><![CDATA[Additional characters are not used ( !\"&\'+,-./:;<=>[]^_`{|} )]]></string>
     <string name="must_be_filled">Must be filled in</string>
     <string name="need_select_dates">You need to select dates</string>
+    <string name="delete_all_note">Delete all entries</string>
+    <string name="question_for_deletion">Are you sure you want to delete all entries?</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
 </resources>

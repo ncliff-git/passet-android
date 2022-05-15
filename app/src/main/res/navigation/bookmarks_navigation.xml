@@ -8,22 +8,13 @@
     <fragment
         android:id="@+id/bookmarksFragment"
         android:name="com.github.ncliff.passet.presentation.ui.bookmarks.BookmarksFragment"
-        android:label="fragment_bookmarks"
+        android:label="Bookmarks"
         tools:layout="@layout/fragment_bookmarks">
         <action
-            android:id="@+id/action_bookmarksFragment_to_accountSettingsFragment2"
-            app:destination="@id/accountSettingsFragment2"
+            android:id="@+id/action_bookmarksFragment_to_note_navigation"
+            app:destination="@id/note_navigation"
             app:popUpTo="@id/bookmarksFragment" />
     </fragment>
 
-    <fragment
-        android:id="@+id/accountSettingsFragment2"
-        android:name="com.github.ncliff.passet.presentation.ui.home.NoteSettingsFragment"
-        android:label="fragment_account_settings"
-        tools:layout="@layout/fragment_note_settings" >
-        <argument
-            android:name="note_id"
-            app:argType="integer"
-            android:defaultValue="-1" />
-    </fragment>
+    <include app:graph="@navigation/note_navigation" />
 </navigation>

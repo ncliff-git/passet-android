@@ -7,6 +7,7 @@ import android.view.*
 import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -25,7 +26,7 @@ class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
     private val binding get() = _binding!!
     private var longitude: Double? = null
     private var latitude: Double? = null
-    private val args: NoteSettingsFragmentArgs by navArgs()
+    private var noteId: Int = -1
     private var bookmark = false
     private val viewModel by lazy {
         ViewModelProvider(requireActivity()).get(SharedDatabaseViewModel::class.java)
@@ -37,6 +38,10 @@ class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
     ): View? {
         _binding = FragmentNoteSettingsBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
+
+        arguments?.getInt("note_id")?.let {
+            noteId = it
+        }
         completionFields()
         initPasswordGen()
         initDatePicker()
@@ -53,7 +58,6 @@ class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
             R.id.action_save -> {
                 when (checkAllFields()) {
                     true -> {
-                        val noteId = args.noteId
                         if (noteId == -1) {
                             viewModel.insert(setBindingToNote()) {}
                         } else {
@@ -73,7 +77,6 @@ class NoteSettingsFragment : Fragment(R.layout.fragment_note_settings) {
      * Получение данных из БД по id
      */
     private fun completionFields() {
-        val noteId = args.noteId
         if (noteId != -1)
             viewModel.findNoteById(noteId).observe(viewLifecycleOwner) {
                 setNoteToBinding(it)

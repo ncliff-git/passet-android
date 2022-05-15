@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -49,8 +50,8 @@ class BookmarksFragment : Fragment() {
     private fun settingUpList() {
         binding.bookmarksRecyclerView.layoutManager = LinearLayoutManager(context)
         rvAdapter = BookwormNotesAdapter() { id ->
-                val action = BookmarksFragmentDirections.actionBookmarksFragmentToAccountSettingsFragment2(id)
-                findNavController().navigate(action)
+                val bundle = bundleOf("note_id" to id)
+                findNavController().navigate(R.id.action_bookmarksFragment_to_note_navigation, bundle)
             }
         binding.bookmarksRecyclerView.adapter = rvAdapter
         viewModel.getAllBookworms().observe(viewLifecycleOwner) { listNotes ->

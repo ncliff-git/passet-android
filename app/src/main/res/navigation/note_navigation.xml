@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/note_navigation"
+    app:startDestination="@id/noteSettingsFragment">
+
+    <fragment
+        android:id="@+id/noteSettingsFragment"
+        android:name="com.github.ncliff.passet.presentation.ui.home.NoteSettingsFragment"
+        android:label="Note"
+        tools:layout="@layout/fragment_note_settings" >
+        <action
+            android:id="@+id/action_noteSettingsFragment_to_searchMapFragment"
+            app:destination="@id/searchMapFragment"
+            app:popUpTo="@id/noteSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchMapFragment"
+        android:name="com.github.ncliff.passet.presentation.ui.home.SearchMapFragment"
+        android:label="Map"
+        tools:layout="@layout/fragment_search_map" />
+
+</navigation>
