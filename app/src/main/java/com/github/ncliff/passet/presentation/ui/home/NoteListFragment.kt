@@ -88,7 +88,7 @@ class NoteListFragment : Fragment(R.layout.fragment_note_list) {
                 val deleteNote = noteList.get(viewHolder.adapterPosition)
                 viewModel.delete(deleteNote) {}
                 rvAdapter?.notifyItemRemoved(viewHolder.adapterPosition)
-                Snackbar.make(binding.root, "${deleteNote.name} delete", Snackbar.LENGTH_LONG)
+                Snackbar.make(binding.addNewAccountButton, "${deleteNote.name} delete", Snackbar.LENGTH_LONG)
                     .setAction("Undo") {
                         viewModel.insert(deleteNote) {}
                     }.show()
