@@ -36,4 +36,8 @@
     <string name="additional_characters_summary_off"><![CDATA[Дополнительные символы не используются ( !\"&\'+,-./:;<=>[]^_`{|} )]]></string>
     <string name="must_be_filled">Должны быть заполнено</string>
     <string name="need_select_dates">Требуется выбрать даты</string>
+    <string name="delete_all_note">Удалить все записи</string>
+    <string name="question_for_deletion">Точно хотите удалить все записи?</string>
+    <string name="no">нет</string>
+    <string name="yes">да</string>
 </resources>

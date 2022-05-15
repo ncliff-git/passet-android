@@ -1,5 +1,6 @@
 package com.github.ncliff.passet.presentation.ui
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
@@ -11,6 +12,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.github.ncliff.passet.R
 import com.github.ncliff.passet.data.DataUtils
 import com.github.ncliff.passet.databinding.ActivityMainBinding

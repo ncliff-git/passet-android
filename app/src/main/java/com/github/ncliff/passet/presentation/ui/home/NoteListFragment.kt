@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -55,8 +56,8 @@ class NoteListFragment : Fragment(R.layout.fragment_note_list) {
         binding.NotesRecyclerView.layoutManager = LinearLayoutManager(context)
         rvAdapter = NotesAdapter(
             { id ->
-                val action = NoteListFragmentDirections.actionNoteListFragmentToNoteSettingsFragment(id)
-                findNavController().navigate(action)
+                val bundle = bundleOf("note_id" to id)
+                findNavController().navigate(R.id.action_noteListFragment_to_note_navigation, bundle)
             },
             { id ->
                 viewModel.bookwormUpdate(id) {}
@@ -109,7 +110,7 @@ class NoteListFragment : Fragment(R.layout.fragment_note_list) {
 
     private fun listeners() {
         binding.addNewAccountButton.setOnClickListener {
-            findNavController().navigate(R.id.action_noteListFragment_to_noteSettingsFragment)
+            findNavController().navigate(R.id.action_noteListFragment_to_note_navigation)
         }
     }
 

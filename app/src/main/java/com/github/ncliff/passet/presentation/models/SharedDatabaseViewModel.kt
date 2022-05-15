@@ -50,4 +50,9 @@ class SharedDatabaseViewModel(application: Application): AndroidViewModel(applic
             repository.deleteNote(note = note, onSuccess)
         }
 
+    fun deleteAll(onSuccess: () -> Unit) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllNote(onSuccess)
+        }
+
 }

@@ -9,6 +9,7 @@ interface NoteRepository {
     suspend fun insertNote(note: Note, onSuccess: () -> Unit)
     suspend fun insertAllNote(vararg note: Note, onSuccess:() -> Unit)
     suspend fun deleteNote(note: Note, onSuccess:() -> Unit)
+    suspend fun deleteAllNote(onSuccess: () -> Unit)
     suspend fun updateNote(note: Note, onSuccess:() -> Unit)
     suspend fun bookwormUpdate(id: Int, onSuccess: () -> Unit)
     fun findNoteById(noteId: Int): LiveData<Note>

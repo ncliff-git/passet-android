@@ -9,29 +9,11 @@
         android:id="@+id/noteListFragment"
         android:name="com.github.ncliff.passet.presentation.ui.home.NoteListFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_note_list" >
+        tools:layout="@layout/fragment_note_list">
         <action
-            android:id="@+id/action_noteListFragment_to_noteSettingsFragment"
-            app:destination="@id/noteSettingsFragment"
+            android:id="@+id/action_noteListFragment_to_note_navigation"
+            app:destination="@id/note_navigation"
             app:popUpTo="@id/noteListFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/noteSettingsFragment"
-        android:name="com.github.ncliff.passet.presentation.ui.home.NoteSettingsFragment"
-        android:label="Notes"
-        tools:layout="@layout/fragment_note_settings" >
-        <action
-            android:id="@+id/action_noteSettingsFragment_to_searchMapFragment"
-            app:destination="@id/searchMapFragment"
-            app:popUpTo="@id/noteSettingsFragment" />
-        <argument
-            android:name="note_id"
-            app:argType="integer"
-            android:defaultValue="-1" />
-    </fragment>
-    <fragment
-        android:id="@+id/searchMapFragment"
-        android:name="com.github.ncliff.passet.presentation.ui.home.SearchMapFragment"
-        android:label="Map"
-        tools:layout="@layout/fragment_search_map" />
+    <include app:graph="@navigation/note_navigation"/>
 </navigation>
