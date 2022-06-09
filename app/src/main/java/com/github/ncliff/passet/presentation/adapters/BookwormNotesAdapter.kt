@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.location.Location
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.ceil
 
 class BookwormNotesAdapter(private val clickListener: (id: Int) -> Unit): RecyclerView.Adapter<BookwormNotesAdapter.NotesAdapter>() {
     private var listNote = emptyList<Note>()
@@ -25,17 +27,23 @@ class BookwormNotesAdapter(private val clickListener: (id: Int) -> Unit): Recycl
         private val textDays: TextView? = view.findViewById(R.id.cardDays)
         private val textDistance: TextView? = view.findViewById(R.id.cardDistance)
         private val cardLine: View? = view.findViewById(R.id.cardLine)
+        private val dayLayout: LinearLayout? = view.findViewById(R.id.cardDaysLayout)
 
         fun bind(note: Note, location: Location?) {
             val calendar = Calendar.getInstance()
             val end = SimpleDateFormat("dd.MM.yyyy", Locale.US).parse(note.dateEnd)
-            val oneDay = (24 * 60 * 60 * 1000).toLong()
-            val time = (end.time - calendar.time.time) / oneDay
+            val oneDay = (24 * 60 * 60 * 1000).toDouble()
+            var time = ceil((end.time - calendar.time.time)/ oneDay).toInt()
+            if (time <= 0) time = 0
 
             cardLine?.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.roby))
             textName?.text = note.name
             textLogin?.text = note.login
             textDays?.text = "$time day"
+            if (time <= 3) {
+                textDays?.setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
+                dayLayout?.setBackgroundResource(R.drawable.bg_day_shape)
+            }
             if (location != null && note.locationLatitude != null && note.locationLongitude != null) {
                 val dist = Geo.distance(
                     Point(location.position.latitude, location.position.longitude),
