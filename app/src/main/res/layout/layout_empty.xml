@@ -12,12 +12,14 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="@string/content_description_passet_icon"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:srcCompat="@drawable/ic_passet" />
+        app:srcCompat="@drawable/ic_passet"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/textView"
@@ -26,10 +28,12 @@
         android:text="@string/empty_list"
         android:textColor="#383838"
         android:textSize="25sp"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

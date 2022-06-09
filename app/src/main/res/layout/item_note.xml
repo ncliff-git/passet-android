@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <View
             android:id="@+id/cardLine"
             android:layout_width="12dp"
@@ -65,29 +64,40 @@
             app:layout_constraintStart_toEndOf="@id/space"
             app:layout_constraintTop_toBottomOf="@id/cardName" />
 
-        <TextView
-            android:id="@+id/cardDays"
+        <LinearLayout
+            android:id="@+id/cardDaysLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:fontFamily="@font/roboto_light"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:paddingHorizontal="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="30 days" />
+            tools:background="@drawable/bg_day_shape">
+            <TextView
+                android:id="@+id/cardDays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_light"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="30 days"
+                tools:textColor="@color/white"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/cardDistance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="4dp"
             android:fontFamily="@font/roboto_light"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/cardDays"
+            app:layout_constraintEnd_toEndOf="@+id/cardDaysLayout"
             tools:text="2 km" />
 
 

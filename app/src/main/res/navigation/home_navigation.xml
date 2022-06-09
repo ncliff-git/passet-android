@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/noteListFragment"
         android:name="com.github.ncliff.passet.presentation.ui.home.NoteListFragment"
-        android:label="Home"
+        android:label="@string/menu_home"
         tools:layout="@layout/fragment_note_list">
         <action
             android:id="@+id/action_noteListFragment_to_note_navigation"

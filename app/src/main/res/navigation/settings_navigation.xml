@@ -7,5 +7,5 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.github.ncliff.passet.presentation.ui.settings.SettingsFragment"
-        android:label="Settings" />
+        android:label="@string/menu_settings" />
 </navigation>

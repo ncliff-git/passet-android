@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/bookmarksFragment"
         android:name="com.github.ncliff.passet.presentation.ui.bookmarks.BookmarksFragment"
-        android:label="Bookmarks"
+        android:label="@string/menu_bookmarks"
         tools:layout="@layout/fragment_bookmarks">
         <action
             android:id="@+id/action_bookmarksFragment_to_note_navigation"
